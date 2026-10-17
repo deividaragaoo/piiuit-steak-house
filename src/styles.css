@@ -32,6 +32,14 @@ body {
   overflow-x: clip;
 }
 
+html:has(.stage),
+html:has(.stage) body,
+html:has(.stage) #root {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 body {
   margin: 0;
   color: var(--cream);
@@ -70,25 +78,31 @@ p {
 }
 
 .stage {
-  position: relative;
+  position: fixed;
+  inset: 0;
   isolation: isolate;
-  min-height: 100svh;
+  width: 100%;
+  height: 100svh;
+  height: 100dvh;
   display: grid;
   place-items: center;
-  overflow-x: clip;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 .scene-wrap {
   position: relative;
   width: min(100%, 78rem);
-  min-height: 100svh;
+  height: 100%;
+  min-height: 0;
   display: grid;
   place-items: center;
+  overflow: hidden;
   padding:
-    max(0.35rem, env(safe-area-inset-top))
-    max(0px, env(safe-area-inset-right))
-    max(0.45rem, env(safe-area-inset-bottom))
-    max(0px, env(safe-area-inset-left));
+    calc(env(safe-area-inset-top, 0px) + clamp(4.35rem, 11.5dvh, 6rem))
+    max(0.35rem, env(safe-area-inset-right))
+    calc(env(safe-area-inset-bottom, 0px) + clamp(4.55rem, 12dvh, 6.2rem))
+    max(0.35rem, env(safe-area-inset-left));
 }
 
 .scenery {
@@ -140,28 +154,40 @@ p {
   overflow: visible;
 }
 
+.ornament path,
+.ornament circle {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1.55px;
+}
+
 .orn-cow {
-  width: 11.4rem;
-  top: 0.7rem;
-  left: 0.7rem;
+  width: auto;
+  height: min(10.6dvh, 5.35rem);
+  top: calc(env(safe-area-inset-top, 0px) + 0.15rem);
+  left: 0.05rem;
 }
 
 .orn-ribeye {
-  width: 6.9rem;
-  top: 0.85rem;
-  right: 0.6rem;
+  width: auto;
+  height: min(9.4dvh, 4.85rem);
+  top: calc(env(safe-area-inset-top, 0px) + 0.35rem);
+  right: 0.2rem;
 }
 
 .orn-picanha {
-  width: 7.8rem;
-  bottom: 0.85rem;
-  left: 0.65rem;
+  width: auto;
+  height: min(9.2dvh, 4.7rem);
+  top: auto;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 0.45rem);
+  left: 0.15rem;
 }
 
 .orn-prime {
-  width: 6.7rem;
-  bottom: 1rem;
-  right: 0.55rem;
+  width: auto;
+  height: min(10dvh, 5.05rem);
+  top: auto;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 0.2rem);
+  right: 0.15rem;
 }
 
 .cut-labels {
@@ -171,7 +197,8 @@ p {
 .card-stack {
   position: relative;
   z-index: 1;
-  width: min(calc(100% - 32px), 430px);
+  width: min(calc(100% - 2.2rem), 400px);
+  max-height: 100%;
 }
 
 .frame-arc {
@@ -266,10 +293,10 @@ p {
 
 .piuit-logo {
   display: block;
-  width: min(74%, 14.5rem);
+  width: min(64%, 11.2rem, 19dvh);
   max-width: 100%;
   height: auto;
-  margin: 0.1rem auto 0.15rem;
+  margin: 0 auto;
   object-fit: contain;
   background: transparent;
 }
@@ -595,6 +622,18 @@ p {
 }
 
 @media (min-width: 760px) {
+  .scene-wrap {
+    padding: 1.25rem;
+  }
+
+  .card-stack {
+    width: min(calc(100% - 32px), 430px);
+  }
+
+  .piuit-logo {
+    width: min(74%, 14.5rem, 30dvh);
+  }
+
   .flow-narrow {
     display: none;
   }
@@ -623,20 +662,25 @@ p {
 
   .orn-cow {
     width: min(20rem, calc(50% - 14rem));
+    height: auto;
     top: 4.5%;
+    bottom: auto;
     left: calc(50% + 12rem);
     right: auto;
   }
 
   .orn-ribeye {
     width: min(12rem, calc(50% - 14.5rem));
+    height: auto;
     top: 7%;
+    bottom: auto;
     left: auto;
     right: calc(50% + 11.2rem);
   }
 
   .orn-picanha {
     width: min(12.5rem, calc(50% - 14.5rem));
+    height: auto;
     top: 61%;
     bottom: auto;
     left: auto;
@@ -645,6 +689,7 @@ p {
 
   .orn-prime {
     width: min(12rem, calc(50% - 14rem));
+    height: auto;
     top: 63%;
     bottom: auto;
     left: calc(50% + 12rem);
@@ -659,9 +704,55 @@ p {
   }
 }
 
+@media (max-height: 740px) {
+  .orn-cow {
+    height: min(8.4dvh, 3.7rem);
+  }
+
+  .orn-ribeye {
+    height: min(7.6dvh, 3.35rem);
+  }
+
+  .orn-picanha {
+    height: min(7.4dvh, 3.25rem);
+  }
+
+  .orn-prime {
+    height: min(8dvh, 3.5rem);
+  }
+
+  .scene-wrap {
+    padding-top: calc(env(safe-area-inset-top, 0px) + clamp(3.5rem, 9dvh, 4.4rem));
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(3.7rem, 9.4dvh, 4.6rem));
+  }
+}
+
+@media (max-height: 700px) {
+  .piuit-logo {
+    width: min(60%, 9.6rem, 17dvh);
+  }
+
+  .card-inner {
+    padding-top: 0.65rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .divider {
+    margin-block: 0.4rem;
+  }
+
+  .card-foot {
+    margin-top: 0.35rem;
+  }
+
+  .divider-foot {
+    margin-block: 0.35rem;
+  }
+}
+
 @media (max-width: 360px) {
   .piuit-logo {
-    width: min(78%, 12.6rem);
+    width: min(66%, 10.4rem, 20dvh);
   }
 
   .hours,
@@ -673,25 +764,6 @@ p {
     min-height: 3.15rem;
   }
 
-  .orn-cow {
-    width: 10rem;
-    left: 0.4rem;
-  }
-
-  .orn-ribeye {
-    width: 5.9rem;
-    right: 0.35rem;
-  }
-
-  .orn-picanha {
-    width: 6.7rem;
-    bottom: 0.55rem;
-  }
-
-  .orn-prime {
-    width: 5.8rem;
-    bottom: 0.65rem;
-  }
 }
 
 .arrival {

@@ -7,10 +7,10 @@ export default function Scenery() {
           <path d="M28 112C44 198 22 292 38 404" stroke="#b69a72" strokeWidth="0.7" opacity="0.55" />
           <path d="M372 88C354 196 378 300 358 424s20 220-6 300" stroke="#c6a36a" strokeWidth="1.15" opacity="0.8" />
           <path d="M362 104C346 200 368 304 350 420" stroke="#b69a72" strokeWidth="0.7" opacity="0.5" />
-          <path d="M48 132C120 158 250 156 342 118" stroke="#b69a72" strokeWidth="1" opacity="0.7" />
-          <path d="M52 146C130 168 246 166 338 132" stroke="#78271f" strokeWidth="0.65" opacity="0.55" />
-          <path d="M46 724C128 692 258 694 346 734" stroke="#b69a72" strokeWidth="1" opacity="0.7" />
-          <path d="M58 738C140 710 250 712 334 746" stroke="#b83c2b" strokeWidth="0.6" opacity="0.45" />
+          <path d="M16 48C96 74 268 76 374 40" stroke="#b69a72" strokeWidth="1" opacity="0.7" />
+          <path d="M24 62C108 86 258 88 366 54" stroke="#78271f" strokeWidth="0.65" opacity="0.55" />
+          <path d="M16 792C104 760 270 762 374 804" stroke="#b69a72" strokeWidth="1" opacity="0.7" />
+          <path d="M28 808C116 778 258 780 362 820" stroke="#b83c2b" strokeWidth="0.6" opacity="0.45" />
           <g stroke="#78271f" strokeWidth="0.7" opacity="0.55">
             <path d="M46 690l34-9" />
             <path d="M49 698l34-9" />
@@ -22,15 +22,15 @@ export default function Scenery() {
           <circle cx="58" cy="168" r="1.7" opacity="0.8" />
           <circle cx="336" cy="186" r="6" opacity="0.12" />
           <circle cx="336" cy="186" r="1.5" opacity="0.75" />
-          <circle cx="70" cy="676" r="6" opacity="0.12" />
-          <circle cx="70" cy="676" r="1.5" opacity="0.7" />
-          <circle cx="328" cy="688" r="7" opacity="0.14" />
-          <circle cx="328" cy="688" r="1.6" opacity="0.75" />
+          <circle cx="168" cy="802" r="6" opacity="0.12" />
+          <circle cx="168" cy="802" r="1.5" opacity="0.7" />
+          <circle cx="214" cy="816" r="7" opacity="0.14" />
+          <circle cx="214" cy="816" r="1.6" opacity="0.75" />
         </g>
         <g fill="none" stroke="#b83c2b" strokeWidth="0.8">
           <rect x="36" y="248" width="5" height="5" transform="rotate(45 38.5 250.5)" opacity="0.7" />
           <rect x="348" y="560" width="5" height="5" transform="rotate(45 350.5 562.5)" opacity="0.65" />
-          <rect x="44" y="760" width="4.5" height="4.5" transform="rotate(45 46.2 762.2)" opacity="0.55" />
+          <rect x="176" y="788" width="4.5" height="4.5" transform="rotate(45 178.2 790.2)" opacity="0.55" />
         </g>
       </svg>
 
