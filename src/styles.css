@@ -473,24 +473,29 @@ p {
 }
 
 .menu-screen {
+  position: relative;
   width: min(100%, 46rem);
   margin: 0 auto;
   padding: 1rem 1rem 2.5rem;
 }
 
 .menu-top {
+  position: relative;
+  z-index: 2;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  align-items: flex-start;
 }
 
 .menu-logo {
-  width: min(36vw, 7.2rem);
+  position: absolute;
+  top: 0.15rem;
+  right: 0;
+  z-index: 1;
+  width: min(50vw, 14.4rem);
   height: auto;
   object-fit: contain;
   background: transparent;
-  flex: 0 0 auto;
+  pointer-events: none;
 }
 
 .back {
@@ -514,7 +519,12 @@ p {
 }
 
 .menu-section {
-  padding-top: 1.35rem;
+  padding-top: 0.85rem;
+}
+
+.section-heading .eyebrow,
+.section-heading h2 {
+  max-width: calc(100% - min(50vw, 14.4rem) - 0.85rem);
 }
 
 .eyebrow {
