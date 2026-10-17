@@ -45,6 +45,29 @@ export function ChevronIcon() {
   )
 }
 
+export function WazeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M12 4.2c-3.7 0-6.6 2.7-6.6 6.2 0 2.2 1.2 4.1 3 5.2l-.4 2.2 2.4-1.3c.5.1 1 .2 1.6.2 3.7 0 6.6-2.7 6.6-6.3S15.7 4.2 12 4.2Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+      />
+      <path d="M9.2 10.2h.01M14.8 10.2h.01M9.4 13.1c.8.8 1.7 1.1 2.6 1.1s1.8-.3 2.6-1.1" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+export function RideIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3.5" y="6.5" width="17" height="11" rx="2.2" fill="none" stroke="currentColor" strokeWidth="1.4" />
+      <path d="M7 14.2h2.2M14.6 14.2H17M6.8 11.2h10.4" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 export function InstagramIcon() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">

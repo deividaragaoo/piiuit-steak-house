@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react'
 import { categories, formatBRL } from '../data/menu.js'
-import { prefersReducedMotion, whatsappLink } from '../data/site.js'
-
-function consultLink(name) {
-  return whatsappLink(`Olá! Gostaria de consultar o valor de ${name} no PIIUIT Steak House.`)
-}
+import { prefersReducedMotion } from '../data/site.js'
 
 function PriceRow({ item }) {
   return (
     <li className="price-row">
       <span className="price-name">{item.name}</span>
       {item.price == null ? (
-        <a className="price-consult" href={consultLink(item.name)} target="_blank" rel="noopener noreferrer">
-          Consultar valores
-        </a>
+        <span className="price-consult">Consultar valores</span>
       ) : (
         <span className="price-value">{formatBRL(item.price)}</span>
       )}

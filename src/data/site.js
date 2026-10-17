@@ -19,6 +19,12 @@ export const site = {
   },
   mapsUrl:
     'https://www.google.com/maps/place/Piiuit+Steak+Bar/@-12.2156702,-38.9520137,17z',
+  geo: {
+    latitude: -12.2156702,
+    longitude: -38.9520137,
+  },
+  rideSearchName: 'Piiuit Steak Bar',
+  addressLine: 'Rua D, 50 - Parque Ipê, Feira de Santana - BA, 44054-000, Brasil',
   hours: {
     label: 'Horários e funcionamento',
     days: 'Terça-feira a domingo',
@@ -36,9 +42,31 @@ export function whatsappLink(message) {
 export const reservationMessage =
   'Olá! Vim pelo site da PIIUIT Steak House e gostaria de falar sobre uma reserva.'
 
+const wazeQuery = `${site.rideSearchName}, ${site.addressLine}`
+
+export const arrival = {
+  title: 'Como chegar',
+  lead: 'Escolha como deseja chegar ao PIIUIT Steak House.',
+  maps: {
+    label: 'Google Maps',
+    hint: 'Abrir localização',
+    href: site.mapsUrl,
+  },
+  waze: {
+    label: 'Waze',
+    hint: 'Iniciar navegação',
+    href: `https://www.waze.com/ul?q=${encodeURIComponent(wazeQuery)}&ll=${site.geo.latitude},${site.geo.longitude}&navigate=yes`,
+  },
+  ride: {
+    label: '99/UBER',
+    hint: `Procurar por ${site.rideSearchName}`,
+    note: `Obs.: ${site.addressLine}`,
+  },
+}
+
 export const destinations = {
   menu: { kind: 'view', view: 'menu' },
-  maps: { kind: 'external', href: site.mapsUrl },
+  maps: { kind: 'arrival' },
   reservations: { kind: 'external', href: whatsappLink(reservationMessage) },
   instagram: { kind: 'external', href: site.instagram },
 }

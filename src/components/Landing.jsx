@@ -1,4 +1,6 @@
+import { useRef, useState } from 'react'
 import { ClockIcon, CutleryIcon, PinIcon, WhatsAppIcon, ChevronIcon, InstagramIcon } from './Icons.jsx'
+import Arrival from './Arrival.jsx'
 import Scenery from './Scenery.jsx'
 import { destinations, site } from '../data/site.js'
 
@@ -26,7 +28,7 @@ const options = [
   },
 ]
 
-function Option({ item, onOpenView }) {
+function Option({ item, onOpenView, onOpenArrival, arrivalRef }) {
   const Icon = item.icon
   const content = (
     <>
@@ -51,6 +53,14 @@ function Option({ item, onOpenView }) {
     )
   }
 
+  if (item.destination.kind === 'arrival') {
+    return (
+      <button ref={arrivalRef} type="button" className="option" onClick={onOpenArrival}>
+        {content}
+      </button>
+    )
+  }
+
   return (
     <a className="option" href={item.destination.href} target="_blank" rel="noopener noreferrer">
       {content}
@@ -59,6 +69,9 @@ function Option({ item, onOpenView }) {
 }
 
 export default function Landing({ onOpenView }) {
+  const [arrivalOpen, setArrivalOpen] = useState(false)
+  const arrivalRef = useRef(null)
+
   return (
     <main className="stage">
       <div className="scene-wrap">
@@ -68,10 +81,15 @@ export default function Landing({ onOpenView }) {
           <article className="card">
         <div className="card-inner">
           <header className="brand">
-            <h1>{site.brand}</h1>
-            <p className="brand-line">{site.brandLine}</p>
-            <p className="tagline">{site.tagline}</p>
-            <p className="signature">{site.signature}</p>
+            <h1>
+              <img
+                src="/images/piuit-logo-transparente.png"
+                alt="PIIUIT Steak House — brasão Angus Black"
+                className="piuit-logo"
+                width="635"
+                height="529"
+              />
+            </h1>
           </header>
 
           <div className="divider" aria-hidden="true">
@@ -92,7 +110,13 @@ export default function Landing({ onOpenView }) {
 
           <nav className="options" aria-label="Acesso rápido">
             {options.map((item) => (
-              <Option key={item.key} item={item} onOpenView={onOpenView} />
+              <Option
+                key={item.key}
+                item={item}
+                onOpenView={onOpenView}
+                onOpenArrival={() => setArrivalOpen(true)}
+                arrivalRef={item.destination.kind === 'arrival' ? arrivalRef : undefined}
+              />
             ))}
           </nav>
 
@@ -110,6 +134,9 @@ export default function Landing({ onOpenView }) {
           </article>
         </div>
       </div>
+      {arrivalOpen ? (
+        <Arrival onClose={() => setArrivalOpen(false)} returnFocusRef={arrivalRef} />
+      ) : null}
     </main>
   )
 }
