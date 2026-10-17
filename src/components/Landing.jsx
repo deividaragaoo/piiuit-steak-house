@@ -1,4 +1,5 @@
 import { ClockIcon, CutleryIcon, PinIcon, WhatsAppIcon, ChevronIcon, InstagramIcon } from './Icons.jsx'
+import Scenery from './Scenery.jsx'
 import { destinations, site } from '../data/site.js'
 
 const options = [
@@ -60,25 +61,11 @@ function Option({ item, onOpenView }) {
 export default function Landing({ onOpenView }) {
   return (
     <main className="stage">
-      <div className="atmosphere" aria-hidden="true">
-        <img
-          className="meat meat-tr"
-          src="/images/decor-picanha.webp"
-          alt=""
-          width="980"
-          height="645"
-          decoding="async"
-        />
-        <img
-          className="meat meat-bl"
-          src="/images/decor-grelha.webp"
-          alt=""
-          width="700"
-          height="480"
-          decoding="async"
-        />
-      </div>
-      <article className="card">
+      <div className="scene-wrap">
+        <Scenery />
+        <div className="card-stack">
+          <div className="frame-arc" aria-hidden="true" />
+          <article className="card">
         <div className="card-inner">
           <header className="brand">
             <h1>{site.brand}</h1>
@@ -119,8 +106,10 @@ export default function Landing({ onOpenView }) {
               <span>{site.instagramHandle}</span>
             </a>
           </footer>
+          </div>
+          </article>
         </div>
-      </article>
+      </div>
     </main>
   )
 }
