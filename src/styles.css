@@ -478,6 +478,21 @@ p {
   padding: 1rem 1rem 2.5rem;
 }
 
+.menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.menu-logo {
+  width: min(36vw, 7.2rem);
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  flex: 0 0 auto;
+}
+
 .back {
   appearance: none;
   border: 1px solid var(--line);

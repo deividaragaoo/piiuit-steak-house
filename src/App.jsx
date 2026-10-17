@@ -32,9 +32,18 @@ export default function App() {
   if (view === 'menu') {
     return (
       <main className="menu-screen">
-        <button type="button" className="back" onClick={() => openView('home')}>
-          Voltar
-        </button>
+        <div className="menu-top">
+          <button type="button" className="back" onClick={() => openView('home')}>
+            Voltar
+          </button>
+          <img
+            src="/images/piuit-logo-transparente.png"
+            alt="PIIUIT Steak House"
+            className="menu-logo"
+            width="635"
+            height="529"
+          />
+        </div>
         <Menu />
       </main>
     )
