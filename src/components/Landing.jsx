@@ -77,7 +77,6 @@ export default function Landing({ onOpenView }) {
       <div className="scene-wrap">
         <Scenery />
         <div className="card-stack">
-          <div className="frame-arc" aria-hidden="true" />
           <article className="card">
         <div className="card-inner">
           <header className="brand">
