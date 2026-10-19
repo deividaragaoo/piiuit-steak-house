@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react'
+
 const EMBERS = [
   { left: '7%', top: '24%', size: 3, delay: '0s', duration: '12s', drift: '7px', color: '#F06420' },
   { left: '14%', top: '62%', size: 2, delay: '1.6s', duration: '14s', drift: '-5px', color: '#B83C2B' },
@@ -12,6 +14,40 @@ const EMBERS = [
   { left: '46%', top: '90%', size: 3, delay: '1.3s', duration: '12s', drift: '5px', color: '#F06420' },
   { left: '68%', top: '88%', size: 2, delay: '4.8s', duration: '17s', drift: '-3px', color: '#B83C2B' },
 ]
+
+export function CardSmoke() {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const stack = node.parentElement
+    if (!stack) return
+
+    function onMove(event) {
+      if (event.pointerType && event.pointerType !== 'mouse') return
+      const rect = stack.getBoundingClientRect()
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 28
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 18
+      node.style.setProperty('--smoke-x', `${x.toFixed(1)}px`)
+      node.style.setProperty('--smoke-y', `${y.toFixed(1)}px`)
+    }
+
+    window.addEventListener('pointermove', onMove, { passive: true })
+    return () => window.removeEventListener('pointermove', onMove)
+  }, [])
+
+  return (
+    <div className="card-smoke" ref={ref} aria-hidden="true">
+      <span className="wisp wisp-left" />
+      <span className="wisp wisp-right" />
+      <span className="wisp wisp-crown" />
+      <span className="wisp wisp-base" />
+      <span className="wisp wisp-shoulder-l" />
+      <span className="wisp wisp-shoulder-r" />
+    </div>
+  )
+}
 
 export default function Scenery() {
   return (

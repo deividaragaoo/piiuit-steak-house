@@ -62,7 +62,7 @@ p {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow-x: clip;
+  overflow: clip;
 }
 
 .scene-wrap {
@@ -138,11 +138,134 @@ p {
 }
 
 .card-stack {
+  position: relative;
   width: min(25.5rem, calc(100% - clamp(2.6rem, 13vw, 4.25rem)));
+}
+
+.card-smoke {
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 42%;
+  width: 168%;
+  height: 148%;
+  transform: translate(calc(-50% + var(--smoke-x, 0px)), calc(-46% + var(--smoke-y, 0px)));
+  pointer-events: none;
+  transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-smoke::before,
+.card-smoke::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.card-smoke::before {
+  left: 16%;
+  right: 16%;
+  top: 4%;
+  bottom: 18%;
+  background:
+    radial-gradient(ellipse at 22% 72%, rgba(236, 230, 222, 0.5), transparent 58%),
+    radial-gradient(ellipse at 78% 70%, rgba(214, 208, 200, 0.46), transparent 56%),
+    radial-gradient(ellipse at 50% 18%, rgba(248, 244, 238, 0.42), transparent 52%);
+  filter: blur(10px);
+  animation: smoke-veil 16s ease-in-out infinite alternate;
+}
+
+.card-smoke::after {
+  left: 28%;
+  width: 44%;
+  top: -6%;
+  height: 46%;
+  background: radial-gradient(ellipse at 50% 80%, rgba(255, 250, 244, 0.55), rgba(180, 174, 166, 0.12) 48%, transparent 72%);
+  filter: blur(12px);
+  animation: wisp-rise 13s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+.wisp {
+  position: absolute;
+  border-radius: 58% 42% 48% 52% / 62% 46% 54% 38%;
+  background:
+    radial-gradient(ellipse at 50% 78%, rgba(255, 248, 240, 0.72), rgba(196, 190, 182, 0.22) 42%, transparent 70%);
+  filter: blur(9px);
+  animation: wisp-rise var(--dur, 12s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.wisp-left {
+  left: 2%;
+  bottom: 16%;
+  width: 38%;
+  height: 62%;
+  --shift: -36px;
+  --dur: 11s;
+  --delay: -3s;
+}
+
+.wisp-right {
+  right: 1%;
+  bottom: 14%;
+  width: 40%;
+  height: 66%;
+  --shift: 34px;
+  --dur: 12.5s;
+  --delay: -7s;
+}
+
+.wisp-crown {
+  left: 24%;
+  bottom: 58%;
+  width: 52%;
+  height: 46%;
+  --shift: 10px;
+  --dur: 10s;
+  --delay: -1.5s;
+  background:
+    radial-gradient(ellipse at 50% 80%, rgba(255, 252, 247, 0.78), rgba(210, 204, 196, 0.16) 46%, transparent 72%);
+}
+
+.wisp-base {
+  left: 18%;
+  bottom: -4%;
+  width: 64%;
+  height: 42%;
+  --shift: -8px;
+  --dur: 14s;
+  --delay: -5s;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(255, 214, 186, 0.34), rgba(230, 224, 216, 0.28) 40%, transparent 70%);
+}
+
+.wisp-shoulder-l,
+.wisp-shoulder-r {
+  width: 28%;
+  height: 48%;
+  --dur: 9s;
+}
+
+.wisp-shoulder-l {
+  left: 12%;
+  bottom: 42%;
+  --shift: -22px;
+  --delay: -8s;
+}
+
+.wisp-shoulder-r {
+  right: 10%;
+  bottom: 40%;
+  --shift: 20px;
+  --delay: -4s;
 }
 
 .card {
   position: relative;
+  z-index: 1;
   width: 100%;
   border: 1px solid rgba(198, 163, 106, 0.86);
   border-radius: 1.7rem;
@@ -565,6 +688,24 @@ p {
   }
 }
 
+@media (max-width: 759px) {
+  .wisp-shoulder-l,
+  .wisp-shoulder-r {
+    display: none;
+  }
+
+  .card-smoke {
+    width: 150%;
+    height: 136%;
+  }
+
+  .wisp,
+  .card-smoke::before,
+  .card-smoke::after {
+    filter: blur(7px);
+  }
+}
+
 @media (max-width: 360px) {
   .card-stack {
     width: calc(100% - 2.5rem);
@@ -770,6 +911,38 @@ a.arrival-option:active {
   }
 }
 
+@keyframes smoke-veil {
+  from {
+    transform: translate3d(-2%, 4%, 0) scale(0.96);
+    opacity: 0.72;
+  }
+
+  to {
+    transform: translate3d(2%, -8%, 0) scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes wisp-rise {
+  0% {
+    transform: translate3d(0, 22px, 0) scale(0.86, 0.78);
+    opacity: 0;
+  }
+
+  16% {
+    opacity: 0.85;
+  }
+
+  68% {
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translate3d(var(--shift, 0px), -148px, 0) scale(1.18, 1.42);
+    opacity: 0;
+  }
+}
+
 @keyframes ember-rise {
   0% {
     transform: translate3d(0, 10px, 0) scale(0.65);
@@ -797,11 +970,22 @@ a.arrival-option:active {
   }
 
   .smoke,
-  .embers span {
+  .embers span,
+  .wisp,
+  .card-smoke,
+  .card-smoke::before,
+  .card-smoke::after {
     animation: none;
+    transition: none;
   }
 
   .embers span {
     opacity: 0.45;
+  }
+
+  .wisp,
+  .card-smoke::before,
+  .card-smoke::after {
+    opacity: 0.42;
   }
 }

@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { ClockIcon, CutleryIcon, PinIcon, WhatsAppIcon, ChevronIcon, InstagramIcon } from './Icons.jsx'
 import Arrival from './Arrival.jsx'
-import Scenery from './Scenery.jsx'
+import Scenery, { CardSmoke } from './Scenery.jsx'
 import { destinations, site } from '../data/site.js'
 
 const options = [
@@ -77,6 +77,7 @@ export default function Landing({ onOpenView }) {
       <div className="scene-wrap">
         <Scenery />
         <div className="card-stack">
+          <CardSmoke />
           <article className="card">
         <div className="card-inner">
           <header className="brand">
