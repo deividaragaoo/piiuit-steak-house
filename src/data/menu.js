@@ -19,6 +19,7 @@ export const steaks = [
   { name: 'Capa de Filé' },
   { name: 'Carne do Sol' },
   { name: 'Assado de Tiras' },
+  { name: 'Cowboy' },
 ]
 
 export const defumados = [
@@ -70,7 +71,7 @@ export const bebidas = [
     id: 'sem-alcool',
     title: 'Sem álcool',
     items: [
-      { name: 'H2O', price: 6 },
+      { name: 'H2O', price: 8 },
       { name: 'Água Mineral', price: 3 },
       { name: 'Água de Coco', price: 8 },
       { name: 'Água com Gás', price: 4 },
@@ -88,9 +89,16 @@ export const bebidas = [
       { name: 'Campari — Dose', price: 10 },
       { name: 'Campari Gourmet', price: 12 },
       { name: 'Old Parr', price: 16 },
-      { name: "Buchanan's", price: 12 },
+      { name: "Buchanan's", price: 22 },
       { name: 'Black Label', price: 22 },
+      { name: 'Licor 43', price: 20 },
+      { name: 'Seleta', price: 7 },
     ],
+  },
+  {
+    id: 'caipirinhas',
+    title: 'Caipirinhas',
+    items: [{ name: 'Caipirinha', price: 10 }],
   },
   {
     id: 'vinhos',
